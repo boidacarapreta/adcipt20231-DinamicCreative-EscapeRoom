@@ -1,4 +1,8 @@
 {
+  "dependencies": {
+    "mqtt": "^4.3.7",
+    "serialport": "^11.0.0"
+  },
   "devDependencies": {
     "eslint": "^8.43.0",
     "eslint-config-standard": "^17.1.0",
@@ -6,8 +10,7 @@
     "eslint-plugin-n": "^16.0.0",
     "eslint-plugin-promise": "^6.1.1"
   },
-  "dependencies": {
-    "mqtt": "^4.3.7",
-    "serialport": "^11.0.0"
+  "scripts": {
+    "start": "node gateway.js"
   }
 }
