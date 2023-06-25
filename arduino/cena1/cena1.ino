@@ -148,8 +148,8 @@ void loop()
       controle = true;
       digitalWrite(LED, LOW);
       Serial.println("STOP");
-      Serial.println("nivel0") 
-      LCD_Inicial(); // Tela inicial solicitando código
+      Serial.println("nivel0")
+          LCD_Inicial(); // Tela inicial solicitando código
       break;
     }
   }
@@ -164,7 +164,7 @@ void loop()
       if (senha.evaluate())
       {
         LCD_Validacao();
-        // client.publish((const char*)"nivel2",porta_aberta_str);
+        // Serial.println("nivel2");
         for (int i = 5; i > 0; i--)
         {
           String texto = "em: " + String(i) + " segundo(s)";
