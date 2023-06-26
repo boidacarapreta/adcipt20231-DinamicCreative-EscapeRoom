@@ -1,4 +1,5 @@
 const { SerialPort } = require('serialport')
+const { ReadlineParser } = require('@serialport/parser-readline')
 const mqtt = require('mqtt')
 
 const broker = 'wss://ifsc.digital/ws/'
@@ -14,11 +15,16 @@ const numbers = [0, 1, 2]
 const speed = 9600
 ports.forEach(port => {
   numbers.forEach(number => {
-    new SerialPort({
+    const serial = new SerialPort({
       path: prefix + port + number,
       baudRate: speed
-    }).on('error', error => console.log(error))
-      .on('open', serial => console.log(serial))
-      .on('data', data => client.publish(topic, data, { qos: 2 }))
+    }).on('error', error => console.log(error)).on('open', serial => console.log(serial))
+    serial.pipe(new ReadlineParser()).on('data', data => {
+      let payload = String(data)
+      if (payload.length > 0) {
+        payload = payload.trim()
+        client.publish(topic, payload, { qos: 2 })
+      }
+    })
   })
 })
