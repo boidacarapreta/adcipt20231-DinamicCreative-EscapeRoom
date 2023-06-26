@@ -7,9 +7,9 @@ input.onButtonPressed(Button.A, function () {
   basic.showNumber(nivel)
 })
 input.onButtonPressed(Button.B, function () {
-  music.play(music.tonePlayable(349, music.beat(BeatFraction.Whole)), music.PlaybackMode.InBackground)
-  serial.writeLine('nivel' + convertToText(nivel))
+  serial.writeLine("nivel" + convertToText(nivel))
 })
 let nivel = 0
 nivel = 0
 basic.showNumber(nivel)
+serial.setBaudRate(BaudRate.BaudRate9600)
