@@ -116,8 +116,7 @@ void loop()
     Serial.print("Identificador (UID) da tag: "); // IMPRIME O TEXTO NA SERIAL
     Serial.println(strID);                        // IMPRIME NA SERIAL O UID DA TAG RFID
 
-    // if (strID.indexOf("96:9B:EF:48") >= 0){
-    if (strID.indexOf("FE:E3:ED:06") >= 0)
+    if (strID.indexOf("96:9B:EF:48") >= 0)
     {
       digitalWrite(L2, LOW); // Desabilitar Trava do Bau
       rito1 = true;
@@ -154,8 +153,7 @@ void loop()
     Serial.print("Identificador (UID) da tag: "); // IMPRIME O TEXTO NA SERIAL
     Serial.println(strID);                        // IMPRIME NA SERIAL O UID DA TAG RFID
 
-    // if (strID.indexOf("06:78:AD:D5") >= 0){
-    if (strID.indexOf("FE:E3:ED:06") >= 0)
+    if (strID.indexOf("06:78:AD:D5") >= 0)
     {
       digitalWrite(L1, LOW); // Desabilitar Trava do Bau
       rito2 = true;
@@ -192,8 +190,7 @@ void loop()
     Serial.print("Identificador (UID) da tag: "); // IMPRIME O TEXTO NA SERIAL
     Serial.println(strID);                        // IMPRIME NA SERIAL O UID DA TAG RFID
 
-    // if (strID.indexOf("3B:E9:03:C5") >= 0){
-    if (strID.indexOf("FE:E3:ED:06") >= 0)
+    if (strID.indexOf("3B:E9:03:C5") >= 0)
     {
       digitalWrite(L3, LOW); // Desabilitar Trava do Bau
       rito3 = true;
@@ -230,8 +227,7 @@ void loop()
     Serial.print("Identificador (UID) da tag: "); // IMPRIME O TEXTO NA SERIAL
     Serial.println(strID);                        // IMPRIME NA SERIAL O UID DA TAG RFID
 
-    // if (strID.indexOf("C6:A5:49:7B") >= 0){
-    if (strID.indexOf("FE:E3:ED:06") >= 0)
+    if (strID.indexOf("C6:A5:49:7B") >= 0)
     {
       digitalWrite(L6, LOW); // Desabilitar Trava do Bau
       rito4 = true;
@@ -268,8 +264,7 @@ void loop()
     Serial.print("Identificador (UID) da tag: "); // IMPRIME O TEXTO NA SERIAL
     Serial.println(strID);                        // IMPRIME NA SERIAL O UID DA TAG RFID
 
-    // if (strID.indexOf("52:63:93:E5") >= 0){
-    if (strID.indexOf("FE:E3:ED:06") >= 0)
+    if (strID.indexOf("52:63:93:E5") >= 0)
     {
       digitalWrite(L5, LOW); // Desabilitar Trava do Bau
       rito5 = true;
@@ -306,8 +301,7 @@ void loop()
     Serial.print("Identificador (UID) da tag: "); // IMPRIME O TEXTO NA SERIAL
     Serial.println(strID);                        // IMPRIME NA SERIAL O UID DA TAG RFID
 
-    // if (strID.indexOf("B3:0A:9F:1B") >= 0){
-    if (strID.indexOf("FE:E3:ED:06") >= 0)
+    if (strID.indexOf("B3:0A:9F:1B") >= 0)
     {
       digitalWrite(L4, LOW); // Desabilitar Trava do Bau
       rito6 = true;
@@ -319,7 +313,8 @@ void loop()
     delay(1000);
     if (rito6 == true)
     {
-      Serial.print("nivel5"); // IMPRIME O TEXTO NA SERIAL
+      Serial.println("FIM - LOOP DO RITUAL"); // IMPRIME O TEXTO NA SERIAL
+      Serial.println("nivel5");               // IMPRIME O TEXTO NA SERIAL
       break;
     }
   }

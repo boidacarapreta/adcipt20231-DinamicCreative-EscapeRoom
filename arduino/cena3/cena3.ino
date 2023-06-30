@@ -1,6 +1,5 @@
 #include <SPI.h>     // Comunicação SPI
 #include <MFRC522.h> // Leitor RFId MFRC522
-#include <Wire.h>    // Protocolo I2C
 
 /* -----------------------------------------------------------------------------------------
  *             MFRC522      Arduino       Arduino   Arduino    Arduino          Arduino
@@ -21,17 +20,11 @@
 #define LVD A2
 #define LVM A3
 
-const int slaveAddress = 0x08;
-int x = 0;
-
-String payload = "nivel2";
-
 MFRC522 mfrc522(SS_PIN, RST_PIN); // Create MFRC522 instance
 
 void setup()
 {
   Serial.begin(9600);
-  Wire.begin();
 
   pinMode(BAU1, OUTPUT);
   pinMode(BAU2, OUTPUT);
@@ -59,7 +52,7 @@ void loop()
   while (trava == false)
   {
     Serial.println("Entrou no Loop da Trava");
-    delay(1000);
+    delay(500);
     if (!mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial())
     {
       return; // RETORNA PARA LER NOVAMENTE
@@ -78,29 +71,23 @@ void loop()
     Serial.print("Identificador (UID) da tag: "); // IMPRIME O TEXTO NA SERIAL
     Serial.println(strID);                        // IMPRIME NA SERIAL O UID DA TAG RFID
 
-    // if (strID.indexOf("1D:E3:06:30") >= 0){
-    if (strID.indexOf("FE:E3:ED:06") >= 0)
+    if (strID.indexOf("13:26:BC:1B") >= 0)
     {
       digitalWrite(LVM, LOW);
       digitalWrite(BAU1, LOW); // Desabilitar Trava do Bau
       digitalWrite(BAU2, LOW); // Desabilitar Trava do Bau
+      delay(500);
       trava = true;
     }
 
     mfrc522.PICC_HaltA();      // PARADA DA LEITURA DO CARTÃO
     mfrc522.PCD_StopCrypto1(); // PARADA DA CRIPTOGRAFIA NO PCD
 
-    delay(1000);
     if (trava == true)
     {
-      Wire.beginTransmission(slaveAddress);
-      String payload = "nivel2";
-      Wire.write(payload.c_str());          // envia a mensagem
-      Wire.endTransmission();               // para de transmitir
-      x++;                                  // incremento da variável
       delay(500);                           // pausa de 500 milissegundos
       Serial.println("FIM LOOP DA TRAVA!"); // IMPRIME O TEXTO NA SERIAL
-      Serial.println("enviado nivel2");     // IMPRIME O TEXTO NA SERIAL
+      Serial.println("nivel2");             // IMPRIME O TEXTO NA SERIAL
       break;
     }
   }
